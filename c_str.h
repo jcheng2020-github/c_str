@@ -11,7 +11,6 @@ struct Node{
 struct Str{
 	struct Node* head;
 	unsigned int num_node;
-	void (*constructor)(struct Str *);
 	void (*deconstructor)(struct Str *);
 	void (*clear)(struct Str *);
 	bool (*insert)(struct Str *, char *, int);
@@ -20,7 +19,7 @@ struct Str{
 	char (*str_index)(struct Str*, unsigned int);
 };
 
-void constructor(struct Str *this);
+void Strconstructor(struct Str *this);
 void deconstructor(struct Str *this);
 void clear(struct Str *this);
 bool insert(struct Str *this, char *, int);
@@ -29,10 +28,17 @@ struct Node* find_end_node(struct Str *this);
 char str_index(struct Str* this, unsigned int index);
 
 
-void constructor(struct Str *this)
+void Strconstructor(struct Str *this)
 {
+	this = (struc Str *)malloc(sizeof(struc Str));
 	this->head = NULL;
 	this->num_node = 0;
+	this->deconstructor = &deconstructor;
+	this->clear = &clear;
+	this->insert = &insert;
+	this->append = &append;
+	this->find_end_node = &find_end_node;
+	this->str_index = &str_index;
 }
 
 void deconstructor(struct Str *this)
