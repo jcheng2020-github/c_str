@@ -44,6 +44,7 @@ void Strconstructor(struct Str *this)
 void deconstructor(struct Str *this)
 {
 	(*this->clear)(this);
+	free(this);
 }
 
 void clear(struct Str *this)
