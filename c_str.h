@@ -14,6 +14,7 @@ struct Str{
 	void (*constructor)(struct Str *);
 	void (*deconstructor)(struct Str *);
 	void (*clear)(struct Str *);
+	bool (*insert)(struct Str *, char *, int);
 	bool (*append)(struct Str *, char *);
 	struct Node* (*find_end_node)(struct Str *);
 	char (*str_index)(struct Str*, unsigned int);
@@ -22,6 +23,7 @@ struct Str{
 void constructor(struct Str *this);
 void deconstructor(struct Str *this);
 void clear(struct Str *this);
+bool insert(struct Str *this, char *, int);
 bool append(struct Str *this, char *value);
 struct Node* find_end_node(struct Str *this);
 char str_index(struct Str* this, unsigned int index);
@@ -57,6 +59,29 @@ void clear(struct Str *this)
 	}
 }
 
+bool insert(struct Str *this, char *value, int i)
+{
+	struct Node *obj, *temp;
+
+	if(i >= this->num_node || i < 0)
+	{
+		return false;
+	}
+	else
+	{
+		obj = (struct Node *)malloc(sizeof(struct Node));
+		obj->value = *value;
+		temp = this->head;
+		for(int j = 0; j < i - 1; j++)
+		{
+			temp = temp->next;
+		}
+		obj->next = temp->next;
+		temp->next = obj;
+		(this->num_node)++;
+	}
+}
+
 bool append(struct Str *this, char *value)
 {
 	struct Node* end_node;
@@ -69,7 +94,7 @@ bool append(struct Str *this, char *value)
 		(this->num_node)++;
 		return true;
 	}
-	if(this->num_node != 0 && this->num_node < (pow(2,sizeof(unsigned int)*8) - 1))
+	if(this->num_node != 0 )
 	{
 		end_node = (*this->find_end_node)(this);
 		end_node->next = (struct Node*)malloc(sizeof(struct Node));
