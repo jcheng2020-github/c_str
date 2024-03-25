@@ -1,3 +1,6 @@
+#ifndef C_STR_H
+#define C_STR_H
+
 #include <stdbool.h>
 #include <stdio.h>
 #include <math.h>
@@ -167,3 +170,5 @@ char str_index(struct Str* this, unsigned int index)
 		return '\0';
 	}
 }
+
+#endif
