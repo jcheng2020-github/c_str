@@ -33,7 +33,7 @@ char str_index(struct Str* this, unsigned int index);
 
 struct Str * Str_constructor()
 {
-	struct Str *this
+	struct Str *this;
 	this = (struc Str *)malloc(sizeof(struc Str));
 	this->head = NULL;
 	this->num_node = 0;
