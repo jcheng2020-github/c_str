@@ -22,7 +22,7 @@ struct Str{
 	char (*str_index)(struct Str*, unsigned int);
 };
 
-struct Str * Str_constructor(struct Str *this);
+struct Str * Str_constructor();
 void deconstructor(struct Str *this);
 void clear(struct Str *this);
 bool insert(struct Str *this, char *, int);
@@ -31,8 +31,9 @@ struct Node* find_end_node(struct Str *this);
 char str_index(struct Str* this, unsigned int index);
 
 
-struct Str * Str_constructor(struct Str *this)
+struct Str * Str_constructor()
 {
+	struct Str *this
 	this = (struc Str *)malloc(sizeof(struc Str));
 	this->head = NULL;
 	this->num_node = 0;
